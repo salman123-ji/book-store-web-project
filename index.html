@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Indian Book Haven</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html, body, .bookstore-wrapper { 
+      height: 100%; 
+      width: 100%; 
+    }
+
+    .bookstore-wrapper {
+      background: linear-gradient(135deg, #FF9933 0%, #1A237E 100%);
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    .bookstore-container { 
+      max-width: 1100px; 
+      margin: 0 auto; 
+    }
+
+    .header { 
+      text-align: center; 
+      margin-bottom: 3rem; 
+      color: white; 
+    }
+
+    .store-title { 
+      font-size: 3rem; 
+      font-weight: bold; 
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+    }
+
+    /* Search Bar Styling */
+    .search-container { 
+      margin-bottom: 2.5rem; 
+      display: flex; 
+      justify-content: center; 
+    }
+
+    .search-box {
+      width: 100%; 
+      max-width: 500px; 
+      padding: 12px 24px;
+      border-radius: 30px; 
+      border: none; 
+      outline: none; 
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Grid Layout */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Book Card Styling */
+    .book-card {
+      background: white; 
+      border-radius: 12px; 
+      overflow: hidden; /* Image corners round karne ke liye */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      display: flex; 
+      flex-direction: column;
+    }
+
+    .book-card:hover { 
+      transform: translateY(-8px); 
+    }
+
+    /* --- Image Section --- */
+    .book-image-container {
+      width: 100%;
+      height: 320px; /* Book cover ki standard height */
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid #eee;
+    }
+
+    .book-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Image ko box me fit karne ke liye */
+      transition: opacity 0.3s;
+    }
+    /* --------------------- */
+
+    .book-details {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .book-title { 
+      font-size: 1.2rem; 
+      font-weight: bold; 
+      color: #333; 
+      margin-bottom: 0.3rem; 
+    }
+
+    .book-author { 
+      font-size: 0.9rem; 
+      color: #FF9933; 
+      font-weight: 600; 
+      margin-bottom: 1rem; 
+    }
+
+    .book-description { 
+      font-size: 0.85rem; 
+      color: #666; 
+      line-height: 1.4;
+      margin-bottom: 1rem; 
+      flex-grow: 1; 
+    }
+
+    .book-price { 
+      font-size: 1.25rem; 
+      font-weight: bold; 
+      color: #2e7d32; 
+    }
+  </style>
+ </head>
+ <body>
+
+  <div class="bookstore-wrapper">
+   <div class="bookstore-container">
+    <header class="header">
+     <h1 class="store-title">The Indian Book Haven</h1>
+     <p>Read the best of Indian Literature</p>
+    </header>
+    
+    <div class="search-container">
+      <input type="text" class="search-box" id="searchBox" placeholder="Search by book or author name...">
+    </div>
+
+    <div class="books-grid" id="booksGrid"></div>
+   </div>
+  </div>
+
+  <script>
+    // Aap yahan "image" property me apna link paste kar sakte hain
+    const books = [
+      {
+        title: "The God of Small Things",
+        author: "Arundhati Roy",
+        description: "A story about how small things in life affect people's destinies.",
+        price: "₹399",
+        image: "book1.jpg" 
+      },
+      {
+        title: "Wings of Fire",
+        author: "A.P.J. Abdul Kalam",
+        description: "Autobiography of India's beloved president and scientist.",
+        price: "₹295",
+        image: "book2.jpg"
+      },
+      {
+        title: "Train to Pakistan",
+        author: "Khushwant Singh",
+        description: "A classic novel depicting the human cost of Partition.",
+        price: "₹250",
+        image: "book3.jpg"
+      },
+      {
+        title: "Malgudi Days",
+        author: "R.K. Narayan",
+        description: "Heartwarming short stories from the town of Malgudi.",
+        price: "₹199",
+        image: "book4.jpg"
+      },
+      {
+        title: "The White Tiger",
+        author: "Aravind Adiga",
+        description: "A dark humor tale of ambition and class in modern India.",
+        price: "₹350",
+        image: "book5.jpg"
+      },
+      {
+        title: "Shiva Trilogy",
+        author: "Amish Tripathi",
+        description: "A legendary journey of a man who becomes a God.",
+        price: "₹450",
+        image: "book6.jpg"
+      }
+    ];
+
+    function renderBooks(data) {
+      const grid = document.getElementById('booksGrid');
+      grid.innerHTML = '';
+      
+      data.forEach(book => {
+        const card = `
+          <div class="book-card">
+            <div class="book-image-container">
+              <img src="${book.image}" alt="${book.title}">
+            </div>
+            <div class="book-details">
+              <h2 class="book-title">${book.title}</h2>
+              <p class="book-author">By ${book.author}</p>
+              <p class="book-description">${book.description}</p>
+              <div class="book-price">${book.price}</div>
+            </div>
+          </div>
+        `;
+        grid.innerHTML += card;
+      });
+    }
+
+    // Search functionality
+    document.getElementById('searchBox').addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      const filtered = books.filter(b => 
+        b.title.toLowerCase().includes(term) || 
+        b.author.toLowerCase().includes(term)
+      );
+      renderBooks(filtered);
+    });
+
+    // Initial render
+    renderBooks(books);
+  </script>
+ </body>
+</html>
