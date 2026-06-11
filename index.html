@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Indian Book Haven</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div class="bookstore-wrapper">
+
+      <div class="bookstore-container">
+
+        <header class="header">
+          <h1 class="store-title">📚 The Indian Book Haven</h1>
+          <p>Read the Best of Indian Literature</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input
+            type="text"
+            id="searchBox"
+            class="search-box"
+            placeholder="Search by book or author...">
+        </div>
+
+        <!-- Books Grid -->
+        <div id="booksGrid" class="books-grid"></div>
+
+      </div>
+
+    </div>
+
+    <!-- Book Details Modal -->
+    <div id="bookModal" class="modal">
+
+      <div class="modal-content">
+
+        <span class="close-btn">&times;</span>
+
+        <img
+          id="modalImage"
+          src
+          alt="Book Cover"
+          class="modal-image">
+
+        <h2 id="modalTitle"></h2>
+
+        <p>
+          <strong>Author:</strong>
+          <span id="modalAuthor"></span>
+        </p>
+
+        <p>
+          <strong>Category:</strong>
+          <span id="modalCategory"></span>
+        </p>
+
+        <p>
+          <strong>Pages:</strong>
+          <span id="modalPages"></span>
+        </p>
+
+        <p>
+          <strong>Rating:</strong>
+          <span id="modalRating"></span>
+        </p>
+
+        <p id="modalDescription"></p>
+
+        <h3 id="modalPrice"></h3>
+
+        <div class="button-group">
+
+          <a id="readBtn" target="_blank" class="btn read-btn">
+            📖 Read PDF
+          </a>
+
+          <a id="downloadBtn" target="_blank" class="btn download-btn">
+            ⬇ Download PDF
+          </a>
+
+          <a id="buyBtn" target="_blank" class="btn buy-btn">
+            🛒 Buy Now
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>

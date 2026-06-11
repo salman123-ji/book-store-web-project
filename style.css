@@ -1,0 +1,229 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+}
+
+.bookstore-wrapper{
+    min-height:100vh;
+    background:linear-gradient(135deg,#FF9933,#1A237E);
+    padding:30px;
+}
+
+.bookstore-container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+}
+
+.store-title{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.search-container{
+    display:flex;
+    justify-content:center;
+    margin-bottom:30px;
+}
+
+.search-box{
+    width:100%;
+    max-width:500px;
+    padding:15px 20px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+    font-size:16px;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+.books-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:25px;
+}
+
+.book-card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 15px rgba(0,0,0,.15);
+}
+
+.book-card:hover{
+    transform:translateY(-8px);
+}
+
+.book-image-container{
+    width:100%;
+    height:320px;
+    overflow:hidden;
+}
+
+.book-image-container img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.book-details{
+    padding:15px;
+}
+
+.book-title{
+    font-size:20px;
+    color:#222;
+    margin-bottom:8px;
+}
+
+.book-author{
+    color:#ff7b00;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.book-description{
+    color:#666;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.book-price{
+    color:#2e7d32;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.modal-content{
+    background:white;
+    width:90%;
+    max-width:600px;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+    position:relative;
+    animation:popup .3s ease;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.close-btn{
+    position:absolute;
+    right:20px;
+    top:10px;
+    font-size:35px;
+    cursor:pointer;
+}
+
+.modal-image{
+    width:220px;
+    height:300px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+#modalTitle{
+    margin-bottom:10px;
+}
+
+#modalDescription{
+    margin:15px 0;
+    color:#555;
+    line-height:1.6;
+}
+
+#modalPrice{
+    color:#2e7d32;
+    margin-top:10px;
+}
+
+.button-group{
+    margin-top:20px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 20px;
+    margin:8px;
+    border-radius:8px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+}
+
+.read-btn{
+    background:#1A237E;
+}
+
+.download-btn{
+    background:#2e7d32;
+}
+
+.read-btn:hover{
+    opacity:.9;
+}
+
+.download-btn:hover{
+    opacity:.9;
+}
+
+@media(max-width:768px){
+
+    .store-title{
+        font-size:2rem;
+    }
+
+    .modal-image{
+        width:180px;
+        height:250px;
+    }
+
+    .modal-content{
+        padding:20px;
+    }
+
+}
+.buy-btn{
+    background:#ff9800;
+}
+
+.buy-btn:hover{
+    opacity:.9;
+}
